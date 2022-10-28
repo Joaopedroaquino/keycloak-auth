@@ -9,14 +9,14 @@ export class AuthController {
     constructor(private authService: AuthService) {}
 
     @Post('login')
-    login(@Body() body:any){
+    login(@Body() body){
         return  this.authService.login( body.username, body.password);
     }
     
     ///@Role('admin')
     @UseGuards(JwtGuard)
-    @Get('enter')
-    test(@Req() req:any){ 
+    @Get('teste')
+    test(@Req() req){ 
         console.log(req.user)
         return {
             name:'Joao Pedro',
