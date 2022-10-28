@@ -3,16 +3,21 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthController } from './auth/auth.controller';
 import { AuthService } from './auth/auth.service';
 import { JwtStrategyService } from './jwt-strategy/jwt-strategy.service';
+import { HttpModule } from '@nestjs/axios';
+import { ConfigService } from '@nestjs/config';
+
 
 @Module({
   imports: [
+    HttpModule,
     JwtModule.register({
       secret:'abcd123456',
       signOptions:{
         expiresIn: '60s' 
     }
-  })],
+  })
+],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategyService]
+  providers: [AuthService, JwtStrategyService, ConfigService]
 })
 export class AuthModule {}
